@@ -1,0 +1,58 @@
+package com.company;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        // write your code here
+        Scanner caeser = new Scanner(System.in);
+
+        boolean valid = false;
+        double key = 0;
+        String plain;
+        char alphabet = 0;
+        String cipher = "";
+
+        while (!valid) {
+            System.out.println("Input a positive number: ");
+            key = caeser.nextDouble();
+
+            if (0 < key && key <= 25) {
+                valid = true;
+            } else {
+                System.out.println("Invalid number, please try again.");
+            }
+        }
+        caeser.nextLine();
+        System.out.println("Plaintext: ");
+        plain = caeser.nextLine();
+
+
+        for (int i = 0; i < plain.length(); i++) {
+            alphabet = plain.charAt(i);
+
+            //lowercase a & z
+            if (alphabet >= 'a' && alphabet <= 'z') {
+                alphabet = (char) (alphabet + key);
+            }
+
+            if (alphabet > 'z') {
+                alphabet = (char) (alphabet + ('a' - 'z' - 1));
+            }
+            cipher = cipher + alphabet;
+        }
+            //uppercase A & Z
+            if (alphabet >= 'A' && alphabet <= 'Z') {
+            alphabet = (char) (alphabet + key);
+
+            if (alphabet > 'Z') {
+                alphabet = (char)(alphabet + ('A' - 'Z' - 1));
+            }
+            else {
+                cipher = cipher + alphabet;
+            }
+        }
+        System.out.println("Ciphertext: " + cipher);
+    }
+}
